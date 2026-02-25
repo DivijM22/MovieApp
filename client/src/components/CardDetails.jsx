@@ -12,6 +12,7 @@ export default function CardDetails()
     const id=searchParams.get('id');
     const [data,setData]=useState();
     const [credits,setCredits]=useState();
+    const [date,setDate]=useState("");
 
     useEffect(()=>{
         async function fetchData()
@@ -20,9 +21,14 @@ export default function CardDetails()
                 const res=await axios.get(`${import.meta.env.VITE_API_URL}/details?media_type=${media_type}&id=${id}`);
                 const creditsRes=await axios.get(`${import.meta.env.VITE_API_URL}/credits?media_type=${media_type}&id=${id}`);
                 const credits=creditsRes.data.data.cast.slice(0,5);
-                setData(res.data.data);
+                const {data}=res.data;
+                setData(data);
+                const currDate=new Date(data.release_date || data.first_air_date);
+                const year=currDate.getFullYear();
+                const month=currDate.getMonth();
+                const day=currDate.getDate();
+                setDate(`${day}-${month}-${year}`);
                 setCredits(credits);
-                console.log(res.data.data);
             }catch(e){console.log(e);}
         }
         if(!media_type || !id){
@@ -112,6 +118,10 @@ return (
                     <div className="flex flex-col">
                         <span className="text-zinc-600">Rating</span>
                         <span className="text-gray-400">{(data?.vote_average/2).toFixed(2)}/5</span>
+                    </div>
+                    <div className="flex flex-col">
+                        <span className="text-zinc-600">Release Date</span>
+                        <span className="text-gray-400">{new Date(data?.release_date || data?.first_air_date)}/5</span>
                     </div>
                     <div className="flex flex-col">
                         <span className="text-zinc-600">Language</span>
