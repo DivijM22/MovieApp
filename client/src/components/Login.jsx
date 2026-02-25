@@ -41,7 +41,7 @@ async function handleSubmit(e) {
           email : form.email,
           password : form.password
       };
-      const res=await axios.post('${import.meta.env.VITE_API_URL}/auth/login',{payload},{headers:{
+      const res=await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`,{payload},{headers:{
         'Content-Type' : 'application/json'
       },withCredentials : true});
       const {data}=res;
@@ -57,7 +57,7 @@ async function handleSubmit(e) {
         email : form.email,
         password : form.password
       };
-      const res=await axios.post('${import.meta.env.VITE_API_URL}/auth/register',{payload},{headers:{
+      const res=await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`,{payload},{headers:{
         'Content-Type' : 'application/json'
       }});
       const {data}=res;
