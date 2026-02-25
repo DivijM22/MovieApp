@@ -23,11 +23,8 @@ export default function CardDetails()
                 const credits=creditsRes.data.data.cast.slice(0,5);
                 const {data}=res.data;
                 setData(data);
-                const currDate=new Date(data.release_date || data.first_air_date);
-                const year=currDate.getFullYear();
-                const month=currDate.getMonth();
-                const day=currDate.getDate();
-                setDate(`${day}-${month}-${year}`);
+                const currDate = new Date(data.release_date || data.first_air_date);
+                setDate(currDate.toLocaleDateString('en-GB')); // Outputs: DD/MM/YYYY
                 setCredits(credits);
             }catch(e){console.log(e);}
         }
@@ -120,8 +117,8 @@ return (
                         <span className="text-gray-400">{(data?.vote_average/2).toFixed(2)}/5</span>
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-zinc-600">Release Date</span>
-                        <span className="text-gray-400">{new Date(data?.release_date || data?.first_air_date)}/5</span>
+                        <span className="text-zinc-600">{media_type==="movie" ? "Release Date" : "First Air Date"}</span>
+                        <span className="text-gray-400">{date}</span>
                     </div>
                     <div className="flex flex-col">
                         <span className="text-zinc-600">Language</span>
