@@ -1,0 +1,10 @@
+# Ignore node_modules in all subdirectories
+node_modules/
+
+# Optional but recommended for Node projects
+.env
+.env.*
+dist/
+build/
+coverage/
+*.log
