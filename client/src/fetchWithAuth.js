@@ -41,12 +41,12 @@ export default async function fetchWithAuth({
                 Authorization : `Bearer ${accessToken}`
             }
         });
-        return {data,updatedToken : accessToken}
+        return {data,updatedToken : accessToken};
     }catch(err){
         if(err.status===401){
             try{
                 const refreshRes=await fetchData({
-                    url : "http://localhost:3000/auth/refresh",
+                    url : `${import.meta.env.VITE_API_URL}/auth/refresh`,
                     withCredentials : true
                 });
                 const newAccessToken=refreshRes.accessToken;

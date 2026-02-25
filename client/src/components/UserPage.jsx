@@ -17,9 +17,9 @@ export default function UserPage()
         async function fetchData()
         {
             try{
-                const {data: userData,updatedToken}=(await fetchWithAuth({url : 'http://localhost:3000/me',accessToken,setAccessToken,navigate}));
+                const {data: userData,updatedToken}=(await fetchWithAuth({url : `${import.meta.env.VITE_API_URL}/me`,accessToken,setAccessToken,navigate}));
                 setUser(userData.user);
-                const {data : watchListData}=(await fetchWithAuth({url : 'http://localhost:3000/api/watchlist',accessToken : updatedToken,setAccessToken,navigate}));
+                const {data : watchListData}=(await fetchWithAuth({url : `${import.meta.env.VITE_API_URL}/api/watchlist`,accessToken : updatedToken,setAccessToken,navigate}));
                 setWatchList(watchListData.data);
             }catch(e){}
         }
@@ -33,7 +33,7 @@ export default function UserPage()
                 const results=await Promise.all(watchList.map(async (value,index)=>{
                     try{
                         const {media_type,itemId}=value;
-                        const res=await axios.get(`http://localhost:3000/details?media_type=${media_type}&id=${itemId}`);
+                        const res=await axios.get(`${import.meta.env.VITE_API_URL}/details?media_type=${media_type}&id=${itemId}`);
                         const {data}=res.data;
                         console.log(data);
                         const year=new Date(data.release_date || data.first_air_date).getFullYear();

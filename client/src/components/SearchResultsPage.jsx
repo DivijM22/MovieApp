@@ -30,8 +30,8 @@ export default function SearchResultsPage()
         {
             var url;
             if(endpoint)
-                url=`http://localhost:3000/${endpoint}?page=${page}`
-            else url=`http://localhost:3000/search?query=${searchQuery}&page=${page}`;
+                url=`${import.meta.env.VITE_API_URL}/${endpoint}?page=${page}`
+            else url=`${import.meta.env.VITE_API_URL}/search?query=${searchQuery}&page=${page}`;
             try{
                 const res=await axios.get(url,{
                     headers:{

@@ -10,8 +10,8 @@ function hash(string)
 
 const cookieOptions={
     httpOnly : true,
-    secure: false,
-    sameSite: 'lax',
+    secure: process.env.NODE_ENV==='production',
+    sameSite: process.env.NODE_ENV==='production' ? 'none' : 'lax',
     maxAge : 7*24*3600*1000
 };
 

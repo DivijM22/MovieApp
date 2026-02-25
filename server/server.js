@@ -7,7 +7,6 @@ const cookieParser=require('cookie-parser');
 const authRouter=require('./auth.routes');
 const jwt=require('jsonwebtoken');
 const {User,WatchList}=require('./models');
-const e = require('express');
 
 const app=express();
 const port=process.env.PORT || 3000;
@@ -22,7 +21,7 @@ connectToDB();
 
 app.use(express.json());
 app.use(cors({
-   origin: 'http://localhost:5173',  // your frontend port
+   origin: process.env.FRONTEND_URL || 'http://localhost:5173',  // your frontend port
    credentials: true
 }));
 app.use(cookieParser());

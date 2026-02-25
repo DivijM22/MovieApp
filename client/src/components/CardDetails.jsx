@@ -17,8 +17,8 @@ export default function CardDetails()
         async function fetchData()
         {
             try{
-                const res=await axios.get(`http://localhost:3000/details?media_type=${media_type}&id=${id}`);
-                const creditsRes=await axios.get(`http://localhost:3000/credits?media_type=${media_type}&id=${id}`);
+                const res=await axios.get(`${import.meta.env.VITE_API_URL}/details?media_type=${media_type}&id=${id}`);
+                const creditsRes=await axios.get(`${import.meta.env.VITE_API_URL}/credits?media_type=${media_type}&id=${id}`);
                 const credits=creditsRes.data.data.cast.slice(0,5);
                 setData(res.data.data);
                 setCredits(credits);
@@ -82,12 +82,12 @@ return (
                         <div className="flex justify-center w-full bg-red-500 font-bold cursor-pointer px-3 py-1 rounded-md
                                     transition duration-300 ease-in-out hover:scale-105 hover:bg-red-600"
                         onClick={()=>{
-                            handleClick('http://localhost:3000/api/add_to_watchlist','POST');
+                            handleClick(`${import.meta.env.VITE_API_URL}/api/add_to_watchlist`,'POST');
                         }}>
                         Add to Watchlist
                     </div>
                     <div onClick={()=>{
-                        handleClick('http://localhost:3000/api/remove_from_watchlist','DELETE');
+                        handleClick(`${import.meta.env.VITE_API_URL}/api/remove_from_watchlist`,'DELETE');
                     }} className="flex justify-center w-full bg-yellow-500 font-bold cursor-pointer px-3 py-1 rounded-md
                     transition duration-300 ease-in-out hover:scale-105 hover:bg-yellow-600">
                         Remove from Watchlist

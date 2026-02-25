@@ -9,17 +9,17 @@ export default function ContentSection(props)
     const {endpoint,media_type,title,scrollbar}=props;
     const navigate=useNavigate();
 
-    const linkMap={
-        trending_movies : 'http://localhost:3000/trending_movies',
-        popular_movies : 'http://localhost:3000/popular_movies',
-        upcoming_movies : 'http://localhost:3000/upcoming_movies',
-        now_playing_movies : 'http://localhost:3000/now_playing_movies',
-        top_rated_movies : 'http://localhost:3000/top_rated_movies',
-        tv_airing_today : 'http://localhost:3000/tv_airing_today',
-        tv_on_air : 'http://localhost:3000/tv_on_air',
-        popular_tv : 'http://localhost:3000/popular_tv',
-        top_rated_tv : 'http://localhost:3000/top_rated_tv',
-        trending_tv : 'http://localhost:3000/trending_tv/day'
+        const linkMap={
+        trending_movies : `${import.meta.env.VITE_API_URL}/trending_movies`,
+        popular_movies : `${import.meta.env.VITE_API_URL}/popular_movies`,
+        upcoming_movies : `${import.meta.env.VITE_API_URL}/upcoming_movies`,
+        now_playing_movies : `${import.meta.env.VITE_API_URL}/now_playing_movies`,
+        top_rated_movies : `${import.meta.env.VITE_API_URL}/top_rated_movies`,
+        tv_airing_today : `${import.meta.env.VITE_API_URL}/tv_airing_today`,
+        tv_on_air : `${import.meta.env.VITE_API_URL}/tv_on_air`,
+        popular_tv : `${import.meta.env.VITE_API_URL}/popular_tv`,
+        top_rated_tv : `${import.meta.env.VITE_API_URL}/top_rated_tv`,
+        trending_tv : `${import.meta.env.VITE_API_URL}/trending_tv/day`
     };
 
     const url=linkMap[endpoint];

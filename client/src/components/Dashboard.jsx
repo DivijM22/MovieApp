@@ -11,7 +11,7 @@ export default function Dashboard()
 
     async function handleLogout()
     {
-        await axios.get('http://localhost:3000/auth/logout',{withCredentials : true});
+        await axios.get(`${import.meta.env.VITE_API_URL}/auth/logout`,{withCredentials : true});
         setAccessToken(null);
         navigate('/',{replace : true});
     }
