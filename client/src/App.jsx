@@ -12,7 +12,7 @@ export default function App()
         async function verifyUserSession()
         {
             try{
-                const res=await axios.get("${import.meta.env.VITE_API_URL}/auth/refresh",{withCredentials : true});
+                const res=await axios.get(`${import.meta.env.VITE_API_URL}/auth/refresh`,{withCredentials : true});
                 const {data}=res;
                 if(data.success)
                     setAccessToken(data.accessToken);
