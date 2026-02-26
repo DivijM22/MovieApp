@@ -5,6 +5,7 @@ import axios from 'axios';
 export default function Login() {
 const navigate=useNavigate();
 const {accessToken,setAccessToken,setGuestMode}=useOutletContext();
+const [error,setError]=useState("");
 
 useEffect(()=>{
   if(!navigate || !accessToken) return;
@@ -41,14 +42,22 @@ async function handleSubmit(e) {
           email : form.email,
           password : form.password
       };
-      const res=await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`,{payload},{headers:{
-        'Content-Type' : 'application/json'
-      },withCredentials : true});
-      const {data}=res;
-      if(data.success)
-      {
-        navigate('/dashboard',{replace : true});
-        setAccessToken(data.accessToken);
+      try{
+        const res=await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`,{payload},{headers:{
+          'Content-Type' : 'application/json'
+        },withCredentials : true});
+        const {data}=res;
+        if(data.success)
+        {
+          navigate('/dashboard',{replace : true});
+          setAccessToken(data.accessToken);
+        }
+      }catch(err){
+        if(err.response){
+          if(err.response.status===401){
+            setError(err.response.data.message);
+          }
+        }else setError("Some error ocurred. Please try again!");
       }
     }
     else {
@@ -119,7 +128,7 @@ async function handleSubmit(e) {
             {mode === "login" ? "Login" : "Register"}
           </button>
         </form>
-
+        <p className="text-sm text-zinc-400 tex-center my-2">{error}</p>
         <p className="text-sm text-zinc-400 text-center mt-6">
           {mode === "login" ? (
             <>

@@ -21,7 +21,7 @@ connectToDB();
 
 app.use(express.json());
 app.use(cors({
-   origin: process.env.FRONTEND_URL || 'http://localhost:5173',  // your frontend port
+   origin: process.env.FRONTEND_URL || 'http://localhost:5173',
    credentials: true
 }));
 app.use(cookieParser());
