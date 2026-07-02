@@ -113,8 +113,8 @@ TMDB API (The Movie Database)
 
 # ⚙️ Setup Instructions
 Clone Repository
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/DivijM22/MovieApp.git
+cd MovieApp
 Install Dependencies
 ## Backend
 cd backend
